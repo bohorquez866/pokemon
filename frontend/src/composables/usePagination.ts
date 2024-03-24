@@ -3,7 +3,7 @@ import { usePokemonStore } from '@/stores/pokemon'
 
 export function usePagination() {
   const currentPage = ref(1)
-  const itemsPerPage = ref(10)
+  const itemsPerPage = ref(20)
   const store = usePokemonStore()
   const pokemonList = store.filteredPokemon
 
@@ -33,10 +33,7 @@ export function usePagination() {
     }
   }
 
-  // Watch for changes in pokemonList and reset pagination if needed
-  watch(pokemonList, () => {
-    currentPage.value = 1
-  })
+  watch(pokemonList, () => (currentPage.value = 1))
 
   return { currentPage, itemsPerPage, totalPages, pages, ...methods }
 }

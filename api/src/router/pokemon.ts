@@ -10,7 +10,8 @@ const app = express();
 
 app.get("/getPokemons", async (_, res) => {
   const data = await Pokemons.findAll();
-  res.status(200).send({ data });
+  const limitedData = data.slice(0, 30);
+  res.status(200).send({ data: limitedData });
 });
 
 app.get("/addPokemons", async (_, res) => {
@@ -46,7 +47,7 @@ app.get("/addPokemons", async (_, res) => {
         name: pokemonDetails.name,
         color: pokemonDetails.color.name,
         url: pokemonDetails.varieties[0].pokemon.url,
-        order: pokemonDetails.order,
+        order: pokemonDetails.id,
       };
 
       await Pokemons.create(pokemonSpecies);

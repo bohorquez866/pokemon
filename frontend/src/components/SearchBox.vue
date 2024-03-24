@@ -5,11 +5,24 @@ import Button from 'primevue/button'
 import { watchDebounced } from '@vueuse/core'
 import { ref } from 'vue'
 import { usePokemonStore } from '../stores/pokemon'
+import { clearAndReloadPokemonList, getPokemons } from '@/helpers/getPokemons'
 
 const store = usePokemonStore()
 const searchTerm = ref<string>('')
 
 watchDebounced(searchTerm, () => store.setSearchTerm(searchTerm.value), { debounce: 500 })
+
+const handleClearAndReloadPokemonList = async () => {
+  try {
+    await clearAndReloadPokemonList()
+    const data = await getPokemons()
+    store.setPokemons(data)
+    searchTerm.value = ''
+    location.reload()
+  } catch (err) {
+    console.error(err)
+  }
+}
 </script>
 
 <template>
@@ -26,6 +39,7 @@ watchDebounced(searchTerm, () => store.setSearchTerm(searchTerm.value), { deboun
     </FloatLabel>
 
     <Button
+      @click="handleClearAndReloadPokemonList"
       class="rounded-lg flex align-middle bg-green-400 text-white px-5 py-2 mt-5 mx-auto"
       label="Reload pokemon list"
     />

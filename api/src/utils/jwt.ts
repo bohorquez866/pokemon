@@ -1,6 +1,10 @@
 const jwt = require("jsonwebtoken");
 
-function generateAccessToken(data) {
+function generateAccessToken() {
+  const data = {
+    apiVersion: "1.0",
+    accessLevel: "anonymous",
+  };
   return jwt.sign(data, process.env.JWT_SECRET, { expiresIn: "30d" });
 }
 

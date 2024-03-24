@@ -11,22 +11,3 @@ import PokemonList from '@/components/PokemonList.vue'
     <pokemonList />
   </main>
 </template>
-
-<style scoped>
-nav {
-  & .active {
-    font-weight: bold;
-    font-size: 16px;
-  }
-  & li {
-    color: black;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 20px;
-    &:hover {
-      background-color: rgb(218, 239, 218);
-    }
-  }
-}
-</style>
-–
