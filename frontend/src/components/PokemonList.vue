@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import PokemonCard from '@/components/PokemonCard.vue'
 import { type PokeCardProps } from '@/types/pokemon'
+import Skeleton from 'primevue/skeleton'
 import { ref, computed, onMounted } from 'vue'
 import { usePokemonStore } from '@/stores/pokemon'
 import { usePagination } from '@/composables/usePagination'
@@ -63,7 +64,7 @@ const { currentPage, totalPages, pages, prevPage, nextPage, goToPage } = usePagi
   </section>
 </template>
 
-<style scoped>
+<style lang="scss">
 nav {
   & .active {
     font-weight: bold;
