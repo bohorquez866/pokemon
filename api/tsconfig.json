@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+      "moduleDetection": "force",
+      "lib": ["ES6"],
+      "types": [
+        "node"
+      ],
+    },
+  }
